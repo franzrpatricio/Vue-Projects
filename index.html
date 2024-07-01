@@ -8,8 +8,40 @@
 </head>
 
 <body>
-  <div id="app">
-    <p>Hey</p>
+  <div id="app" v-cloak> 
+    <!-- v-cloak = html(attribute) | vue(directive); wait Vue App to mount itself to document (html) then unmount to hide elements  -->
+    <p>{{ fullName }}</p> 
+    <!-- remove "()" in full name because it is in computed property -->
+    <p><a :href="githubLink" target="_blank">Check my GitHub!</a></p>
+    <!-- "v-bind:"||":" used for binding attributes -->
+     <p v-html="rawURL"></p>
+    <!-- when outputting raw html, use "v-html" directive to prevent XSS attack -->
+     <p>Followers: {{ followers }}</p>
+    <hr/>
+
+    <label for="firstName">First Name</label>
+    <input type="text" v-model.trim="firstName"/> 
+    <!-- w/ v-model; any changes will reflect in live (Reactivity) -->
+    <!-- two-way data binding; any changes in the dom will change in JS instance (vice-versa) -->
+    <!-- v-model modifier ".lazy"(prevent updates every key press|delays the change until the user is finished in typing) & ".trim"(excess whitespacing) -->
+
+    <label for="middleName">Middle Name</label>
+    <input type="text" @keyup.enter="keyModifierEvent"/>
+    <!--"keyup" Key Modifier; type something then click enter, only then it will happen -->
+
+    <label for="lastName">Last Name</label>
+    <input type="text" :value="lastName" @input.prevent="passDataWithEvents('Last Name event Triggered!',$event)"/>
+    <!-- bind event in input field -->
+    <!-- "v-on"|| "@" event modifiers = modify the way any event is handled -->
+
+    <label for="followers">Followers</label>
+    <input type="number" v-model.number="followers"/>
+    <!-- input tag always return string even if it is number -->
+    <!-- vue has modifier called ".number"|| v-model modifier =  to convert it into number -->
+
+    <button type="button" v-on:click="addFollower">Follow</button>
+    <button type="button" @click="followers--">Unfollow</button>
+    <!-- "v-on:"" || "@" directive used for listening events -->
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

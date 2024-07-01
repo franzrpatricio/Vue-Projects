@@ -6,3 +6,9 @@ input[type="text"] {
   margin: 10px 0;
   display: block;
 }
+
+[v-cloak]{ 
+  /* since v-cloak is recognized as an attribute in the document (HTML), we can do the hiding of element via CSS;
+  wrap it in square brackets*/
+  display: none;
+}
