@@ -1,0 +1,46 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>VueJS Course</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+  <div id="app">
+    <p v-if="mode == 1">Showing v-if directive content</p>
+    <template v-else-if="mode == 0">
+      <h3>Used the directive in template tag for more flexibility</h3>
+      <h4>To keep HTML structure w/o ruining CSS/styling</h4>
+      <h5>Vue will remove the template tag but still render this content. Amazing!</h5>
+      <p>Showing v-else-if directive content</p>
+    </template>
+    <p v-else>Showing v-else directive content</p>
+    <i v-show="mode == 1">v-show directive</i>
+    <!-- 
+      Vue's Conditional Rendering 
+      "v-if|v-else-if|v-else" 
+      = Vue add/remove elements based on conditions set in the directive(v-if)
+      v-if, v-else-if, v-else(no condition) <- SHOULD BE ON THE SAME LEVEL OF TAGS
+      = performance-wise, not good if hundreds of elements 
+      = if element is rarely toggled, USE V-IF
+
+      "v-show" 
+      = unlike v-if, if condition is not met; "display" CSS prop will be set to none 
+      = not applicable for template tag; expensive on load (performance)
+      = if element is toggled frequently, USE V-SHOW
+    -->
+
+    <select v-model="mode">
+      <option value="1">v-if?</option>
+      <option value="0">v-else-if?</option>
+      <option value="2">v-else?</option>
+    </select>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
