@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>VueJS Course</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <ul>
+      <li v-for="(bird, index) in birds" :class="bird" :key="bird">
+        <!-- for each bird in birds[array]-->
+        {{bird}} - {{index}}
+      </li>
+    </ul>
+    <hr /> <!--horizontal line-->
+    <ul v-for="person in people">
+      <li v-for="(value, key, index) in person">
+        <div>
+          {{key}}: {{value}} - Index:{{index}} 
+          <!--ex output: 
+            name: John - Index: 0
+            age: 20 - Index: 1
+          -->
+        </div>
+      </li>
+    </ul>
+    <!-- 
+      LIST RENDERING
+      "v-for"
+      = 'alias' in 'array of property'
+      = if display values = 'alias' ex: bird -> {{bird}}
+      = if display values & index = ('alias','index') ex: (bird, index) -> {{bird}} - {{index}}
+
+      In an array of objects you'd want to loop through its object properties
+      = after looping the outer property (ex: 'person' in people[])
+      = loop through the property of the object 
+      (ex: (value, key, index) in 'person') -> {{key}}: {{value}} - {{index}}
+
+      KEY BINDING | ":key"
+      = To uniquely identify item in array even if positions change
+      = To keep track of items in arrays even after any changes
+    -->
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
